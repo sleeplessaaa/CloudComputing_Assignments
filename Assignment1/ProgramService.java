@@ -25,12 +25,7 @@ public class ProgramService {
 		return Programs.values();
 	}
 	public Program getProgram(String programName) {
-		for(Program program : Programs.values()) {
-			if(program.getProgramName() == programName) {
-				return program;
-			}	
-		}
-		return new Program();
+		return Programs.get(programName);
 	}
 }
 
