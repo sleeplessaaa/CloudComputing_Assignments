@@ -1,0 +1,42 @@
+{
+  "Comment": "An example of the Amazon States Language using a choice state.",
+  "StartAt": "Student Loggin",
+  "States": {
+    "Student Loggin": {
+      "Type": "Task",
+      "Resource": "",
+      "Next": "Course Registry?"
+    },
+    "Course Registry?": {
+      "Type" : "Choice",
+      "Choices": [
+        {
+          "Variable": "$.enroll",
+          "StringEquals": "false",
+          "Next": "Fee Service"
+        }
+      ],
+      "Default": "Already Registry!"
+    },
+
+    "Fee Service": {
+      "Type" : "Task",
+      "Resource": "",
+      "Next": "Notify"
+    },
+
+
+    "Already Registry!": {
+      "Type": "Fail",
+      "Error": "DefaultStateError",
+      "Cause": "Already Registry!"
+    },
+    
+
+    "Notify": {
+      "Type": "Task",
+      "Resource": "",
+       "End": true
+    }
+  }
+}
